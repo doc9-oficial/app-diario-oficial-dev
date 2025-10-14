@@ -1,76 +1,89 @@
 {
-    "name": "app-diario-oficial-dev",
-    "version": "1.0.0",
-    "description": "Consulta Diário Oficial: Extrai publicações oficiais relacionadas a um advogado, OAB ou parte",
-    "auth": {
-        "description": {
-            "title": "Configuração de Acesso",
-            "body": "Configure suas credenciais para acessar o serviço.",
-            "footer": "As credenciais são armazenadas com segurança.",
-            "link": ""
+  "name": "app-diario-oficial-dev",
+  "version": "1.0.0",
+  "description": "Consulta Diário Oficial: Extrai publicações oficiais relacionadas a um advogado, OAB ou parte",
+  "auth": {
+    "description": {
+      "title": "Configuração de Acesso",
+      "body": "Configure suas credenciais para acessar o serviço.",
+      "footer": "As credenciais são armazenadas com segurança.",
+      "link": ""
+    },
+    "params": [
+      {
+        "name": "whomToken",
+        "type": "string",
+        "inputType": "text",
+        "required": true,
+        "label": "Token do Whom"
+      },
+      {
+        "name": "whomExtensionId",
+        "type": "string",
+        "inputType": "text",
+        "required": true,
+        "label": "ID da Extensão do Whom"
+      }
+    ]
+  },
+  "functions": {
+    "buscarPublicacao": {
+      "script": "dist/buscarPublicacao.js",
+      "description": "Busca publicações no Diário Oficial",
+      "category": "judicial",
+      "values": {
+        "termo": "exemplo",
+        "filtro": "todos"
+      },
+      "params": [
+        {
+          "name": "termo",
+          "type": "string",
+          "inputType": "text",
+          "required": true,
+          "label": "Termo de consulta"
         },
-        "params": [           
-            {
-                "name": "whomToken",
-                "type": "string",
-                "inputType": "text",
-                "required": true,
-                "label": "Token do Whom"
-            },
-            {
-                "name": "whomExtensionId",
-                "type": "string",
-                "inputType": "text",
-                "required": true,
-                "label": "ID da Extensão do Whom"
-            }        
-        ]
+        {
+          "name": "filtro",
+          "type": "string",
+          "inputType": "text",
+          "required": false,
+          "label": "Filtro de resultados"
+        }
+      ],
+      "help": {
+        "title": "Como usar a função buscarPublicacao",
+        "body": "Para utilizar a função buscarPublicacao, forneça o termo que deseja buscar no campo 'termo'. Você pode opcionalmente aplicar um 'filtro' para refinar os resultados. A função retornará uma lista de publicações relacionadas ao termo consultado.",
+        "footer": "Certifique-se de que o termo esteja correto para melhores resultados."
+      }
     },
-    "functions": {        
-        "buscarPublicacao": {
-            "script": "dist/buscarPublicacao.js",
-            "description": "Busca publicações no Diário Oficial",
-            "category": "judicial",
-            "values": {
-                "termo": "exemplo",
-                "filtro": "todos"
-            },
-            "params": [
-                {
-                    "name": "termo",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": true,
-                    "label": "Termo de consulta"
-                },
-                {
-                    "name": "filtro",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": false,
-                    "label": "Filtro de resultados"
-                }
-            ]        },
-            "monitorarPublicacao": {
-                "script": "dist/monitorarPublicacao.js",
-                "description": "Configura monitoramento de publicações",
-                "category": "judicial",
-                "values": {
-                    "parametro": "valor"
-                },
-            "params": [
-                {
-                    "name": "parametro",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": true,
-                    "label": "Parâmetro principal"
-                }
-            ]        }    },
-    "config": {
-        "timeout": 60000,
-        "max_retries": 3,
-        "cache_ttl": 3600
-    },
-    "mcp": true
+    "monitorarPublicacao": {
+      "script": "dist/monitorarPublicacao.js",
+      "description": "Configura monitoramento de publicações",
+      "category": "judicial",
+      "values": {
+        "parametro": "valor"
+      },
+      "params": [
+        {
+          "name": "parametro",
+          "type": "string",
+          "inputType": "text",
+          "required": true,
+          "label": "Parâmetro principal"
+        }
+      ],
+      "help": {
+        "title": "Como usar a função monitorarPublicacao",
+        "body": "Para utilizar a função monitorarPublicacao, forneça os detalhes do monitoramento que deseja configurar no campo 'parametro'. A função retornará uma confirmação da configuração do monitoramento.",
+        "footer": "Certifique-se de que os detalhes estejam corretos para melhores resultados."
+      }
+    }
+  },
+  "config": {
+    "timeout": 60000,
+    "max_retries": 3,
+    "cache_ttl": 3600
+  },
+  "mcp": true
 }
