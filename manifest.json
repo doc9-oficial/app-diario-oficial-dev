@@ -28,6 +28,7 @@
   },
   "functions": {
     "buscarPublicacao": {
+      "name": "Buscar Publicação - Diário Oficial",
       "script": "dist/buscarPublicacao.js",
       "description": "Busca publicações no Diário Oficial",
       "category": "judicial",
@@ -58,6 +59,7 @@
       }
     },
     "monitorarPublicacao": {
+      "name": "Monitorar Publicação - Diário Oficial",
       "script": "dist/monitorarPublicacao.js",
       "description": "Configura monitoramento de publicações",
       "category": "judicial",
